@@ -29,6 +29,7 @@ public class EmailService {
     @Transactional
     public Email sendEMail(Email email){
         try{
+            System.out.println(email.getEmailTo());
             email.setSendDateEmail(LocalDateTime.now());
             email.setEmailFrom(emailFrom);
 
@@ -36,16 +37,16 @@ public class EmailService {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(email.getEmailTo());
             message.setSubject(email.getSubject());
-            message.setText(email.getTextEmail());
+            message.setText(email.getText());
             sender.send(message);
 
             email.setStatusEmail(StatusEmail.SENT);
 
         }catch (MailException e){
             email.setStatusEmail(StatusEmail.ERROR);
-        }finally {
-            return repository.save(email);
         }
+
+        return repository.save(email);
     }
 
 }

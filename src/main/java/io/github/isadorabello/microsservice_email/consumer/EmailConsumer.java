@@ -19,10 +19,11 @@ public class EmailConsumer {
 
     @RabbitListener(queues = "${broker.queue.email.name}")
     public void ListenEmailQueue(@Payload EmailDTO dto) {
-        System.out.println(dto.email());
-//        var email = new Email();
-//        BeanUtils.copyProperties(dto, email);
-//        service.sendEMail(email);
+        System.out.println(dto.emailTo());
+        var email = new Email();
+        BeanUtils.copyProperties(dto, email);
+        System.out.println(email.getEmailTo());
+        service.sendEMail(email);
     }
 
 }

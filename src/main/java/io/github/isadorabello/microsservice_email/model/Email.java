@@ -19,7 +19,7 @@ public class Email implements Serializable {
     private String emailTo;
     private String subject;
     @Column(columnDefinition = "TEXT")
-    private String textEmail;
+    private String text;
     private LocalDateTime sendDateEmail;
     private StatusEmail statusEmail;
 
@@ -63,12 +63,12 @@ public class Email implements Serializable {
         this.subject = subject;
     }
 
-    public String getTextEmail() {
-        return textEmail;
+    public String getText() {
+        return text;
     }
 
-    public void setTextEmail(String textEmail) {
-        this.textEmail = textEmail;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public LocalDateTime getSendDateEmail() {
